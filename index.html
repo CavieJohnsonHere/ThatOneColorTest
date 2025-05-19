@@ -98,7 +98,8 @@
     </style>
 </head>
 <body class="min-w-screen min-h-screen bg-[#1a1a1e] text-white text-2xl p-10">
-    <input type="color" id="colorPicker" value="#ffffff">
+    <input class="mb-10" type="color" id="colorPicker" value="#ffffff">
+    <div id="warning" class="mb-10"></div>
     <div class="flex gap-5 mb-10">
         <div class="flex gap-2">
             <div>hue</div>
@@ -130,6 +131,12 @@
     <div class="flex gap-10" id="colorPalette">
     </div>
     <script>
+        const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+
+        if (isFirefox) {
+            document.getElementById("colorPicker").disabled = true;
+            document.getElementById("warning").innerText = "FireFox sucks, so does it's color picker. use the settings below:";
+        }
         const hueInput = document.getElementById('hue');
         const satInput = document.getElementById('saturation');
         const briInput = document.getElementById('brightness');
